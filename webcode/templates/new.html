@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+    <form>
+    <fieldset>
+        <legend>New Graph</legend>
+        <div class="control-group">
+            <label for="name" class="control-label">Name</label>
+            <input name="name" type="text" class="input-xxlarge" id="name"/>
+        </div>
+        <div class="control-group">
+            <label for="json" class="control-label">Data</label>
+            <textarea rows="10" cols="80" class="input-xxlarge" name="json" id="json"></textarea>
+        </div>
+    </fieldset>
+    <div class="form-actions">
+        <a class="btn btn-info" id="btn-create">Create</a>
+    </div>
+    </form>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('.nav li').removeClass('active');
+        $('.nav li:eq(1)').addClass('active');
+
+        $('#btn-create').on('click', function(){
+            var name = $('#name').val();
+            var json = $('#json').val();
+            oegarn.graph_store.create_graph(name, json);
+        });
+    });
+    </script>
+{% endblock %}

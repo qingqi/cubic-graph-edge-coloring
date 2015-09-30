@@ -1,0 +1,64 @@
+.control_reset .goog-toolbar-button-inner-box {
+  padding-left: 18px;
+  background: url(/static/img/arrow-circle-135-left.png) no-repeat 1px 3px;
+}
+
+.control_reset.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background-position: 0 3px;
+}
+
+.control_start .goog-toolbar-button-inner-box {
+  padding-left: 18px;
+  background: url(/static/img/control.png) no-repeat 1px 3px;
+}
+
+.control_start.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background-position: 0 3px;
+}
+
+.control_stop .goog-toolbar-button-inner-box {
+  padding-left: 18px;
+  background: url(/static/img/control-pause.png) no-repeat 1px 3px;
+}
+
+.control_stop.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background-position: 0 3px;
+}
+
+.control_lock .goog-toolbar-button-inner-box {
+  padding-left: 18px;
+  background: url(/static/img/lock.png) no-repeat 1px 3px;
+}
+
+.control_lock.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background-position: 0 3px;
+}
+
+.control_lock.goog-toolbar-button-checked .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background: url(/static/img/lock-unlock.png) no-repeat 0 3px;
+}
+
+.control_filter .goog-toolbar-menu-button-caption {
+  padding-left: 18px;
+  background: url(/static/img/color-swatch.png) no-repeat 1px 0;
+}
+
+.control_filter.goog-toolbar-button-hover .goog-toolbar-menu-button-caption {
+  padding-left: 17px;
+  background-position: 0 0;
+}
+
+.control_debug .goog-toolbar-button-inner-box {
+  padding-left: 18px;
+  background: url(/static/img/gear.png) no-repeat 1px 3px;
+}
+
+.control_debug.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  padding-left: 17px;
+  background-position: 0 3px;
+}

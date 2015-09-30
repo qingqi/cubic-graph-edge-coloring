@@ -1,0 +1,8 @@
+body {
+    padding-top: 60px;
+}
+
+
+#graphs li:hover {
+    cursor: pointer;
+}

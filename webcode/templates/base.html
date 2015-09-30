@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/xeme.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/garou.css') }}"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/oegarn.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/xm_compiled.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/innersvg.js') }}"></script>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">Graph Inspector</a>
+            <ul class="nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/new">New</a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

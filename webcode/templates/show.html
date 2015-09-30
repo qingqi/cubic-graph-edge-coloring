@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <div id="graph_container" class="xeme_graph_wrapper"></div>
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a class="btn" onclick="oegarn.layout();">Layout</a>
+                        <a class="btn" onclick="oegarn.random_color();">Random</a>
+                        <a class="btn" onclick="oegarn.color();">Color</a>
+                        <a class="btn" onclick="oegarn.edge_coloring_by_perfect_matching();">P-Color</a>
+                        <a class="btn" onclick="oegarn.highlight_ab_cycles();">ab cycles</a>
+                        <a class="btn" onclick="oegarn.highlight_ac_cycles();">ac cycles</a>
+                        <a class="btn" onclick="oegarn.highlight_bc_cycles();">bc cycles</a>
+                        <a class="btn" onclick="oegarn.invert_highlighted();">invert</a>
+                        <a class="btn" onclick="oegarn.check_resolvable();">check</a>
+                        <a class="btn" onclick="oegarn.count_resolve();">count</a>
+                        <a class="btn" onclick="oegarn.highlight_ac_exclusive_chain();">ac chain</a>
+                        <a class="btn" onclick="oegarn.highlight_bc_exclusive_chain();">bc chain</a>
+                        <a class="btn" onclick="oegarn.perfect_matching();">p-matching</a>
+                        <a class="btn" onclick="oegarn.highlight_petersen_subdivision();">subdivision</a>
+                        
+                        <a class="btn btn-primary" onclick="oegarn.exhaustive_matching();">exhaustive_matching</a>
+                        
+                        <a class="btn btn-primary" onclick="oegarn.move_left();">move left</a>
+                        <a class="btn btn-primary" onclick="oegarn.move_right();">move right</a>
+                        <a class="btn btn-primary" onclick="oegarn.bicycle_format();">Bicycle</a>
+                        <a class="btn btn-primary" onclick="save_graph();">Save In DB</a>
+                        
+                    </div>
+                    
+                    <div class="btn-group">
+                        <input name="name" type="text" class="input-small" id="edge-id"/>
+                        <a class="btn btn-warning" id="btn-remove">Remove</a>
+                        <a class="btn btn-warning" onclick="oegarn.delete_even_ab_cycles();">Remove ab</a>
+                        <a class="btn btn-warning" onclick="oegarn.put_back();">Put Back</a>
+                        
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-inverse" onclick="oegarn.smooth();">Smooth</a>
+                        <a class="btn btn-inverse" onclick="oegarn.clear_colors();">clear</a>
+                        <a class="btn btn-inverse" onclick="oegarn.find_pentagon();">Pentagon</a>
+                        <a class="btn btn-inverse" onclick="print_current_graph();"><i class="icon-print icon-white"></i> Print</a>
+                        <a class="btn btn-danger" onclick="oegarn.quit();">Quit</a>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div class="span4">
+                <ul id="graphs">
+                    <li>Placeholder</li>
+                </ul>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                
+                gv = new xeme.ui.GraphViewer(null, 'graph_container');
+                
+                //console.log(oegarn);
+                oegarn.update_current_graph.connect(function (data) {
+                    var graph = JSON.parse(data);
+                    gv.update(graph);
+                });
+                
+                oegarn.update_graph_list.connect(function (data) {
+                    var graphs = JSON.parse(data);
+                    $('#graphs').html('');
+                    //console.dir(graphs);
+                    for (var i = 0; i < graphs.length; i++) {
+                        var ele = $('<li></li>').data('graph-id', graphs[i].id).html(graphs[i].name).click(function () {
+                            $("#graphs li").removeClass('active');
+                            oegarn.load_graph($(this).data('graph-id'));
+                            $(this).addClass('active');
+                        }).appendTo($('#graphs'));
+                    }
+                });
+
+                oegarn.highlight.connect(function (highlight_data) {
+                    var data = JSON.parse(highlight_data);
+                    //console.log(data['vertices']);
+                    //console.log(data['edges'])
+
+                    gv.highlight(data['vertices'], data['edges']);
+                }
+                    )
+
+                $('#btn-remove').on('click', function(){
+                    var edge = $('#edge-id').val();
+                    console.log(edge);
+                    oegarn.remove_one_edge(edge);
+                });
+
+                oegarn.list_graphs();
+            });
+
+            function print_current_graph() {
+                var svg_source = '<svg width="600" height="600">' + $('svg')[0].innerHTML + '</svg>';
+                oegarn.print_svg(svg_source);
+            }
+
+            function save_graph() {
+                oegarn.save(gv.graph.toJSON());
+            }
+        </script>
+    </div>
+{% endblock %}
